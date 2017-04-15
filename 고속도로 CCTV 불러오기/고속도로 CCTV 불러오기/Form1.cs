@@ -26,6 +26,7 @@ namespace 고속도로_CCTV_불러오기
             InitBrowser();
         }
 
+        
         void CCTV수신()
         {
 
@@ -52,6 +53,9 @@ namespace 고속도로_CCTV_불러오기
                 // 응답 Stream -> 응답 String 변환
                 string strResult = srReadData.ReadToEnd();
                 string[] test = strResult.Split('\n');
+                var list = new List<string>(test);
+                list.Remove("<!DOCTYPE html>");
+                test = list.ToArray();
 
                 if (test.Length != 18 && test[111] != "\t\t<h1><em class=\"_sectionName\"></em></h1>")
                 {
